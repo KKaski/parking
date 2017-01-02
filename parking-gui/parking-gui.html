@@ -1,0 +1,202 @@
+<head>
+  <title>Parking</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" charset="utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+ <nav class="navbar navbar-inverse navbar-default navbar-fixed-top " role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Nokia Parking Advisor</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#map">Map</a></li>
+        <li><a href="#table">Table</a></li>
+        <li><a href="#watson">Watson</a></li>
+         <li><a href="#apis">APIs</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <section id="map" class="map-section" >
+
+    
+    <!-- Unnamed (Image) -->
+    <div id="u0" class="ax_default image">
+      <img id="u0_img" class="img " src="images/u0.jpg" />
+    </div>
+
+    <!-- P3 (Group) -->
+    <div id="u2" class="ax_default" data-label="P3" >
+      <!-- Unnamed (Rectangle) -->
+      <div id="u3" class="ax_default box_2">
+        {{> marker id="u3_div" place="P3"}}
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u11" class="ax_default heading_2">
+        <div id="u11_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u12" class="text_large">
+          <p>P3 {{> map place="P3"}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- P10 (Group) -->
+    <div id="u13" class="ax_default" data-label="P10" >
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u14" class="ax_default box_2">
+          {{> marker id="u14_div" place="P10"}}
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u22" class="ax_default heading_2">
+        <div id="u22_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u23" class="text_large">
+          <p><span>P10 {{> map place="P10"}}</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- P5 (Group) -->
+    <div id="u24" class="ax_default" data-label="P5">
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u25" class="ax_default box_2">
+          {{> marker id="u25_div" place="P5"}}
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u33" class="ax_default heading_2">
+        <div id="u33_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u34" class="text_large">
+          <p><span class="text">P5</span><span>&nbsp;{{> map place="P5"}}</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="table" class="table-section" >
+    <div class="outer">
+    <div class="logo"></div>
+    <h1 class="title">Parking Advisor</h1>
+    <div class="subtitle">Select a area to add free space</div>
+    {{> parking}}
+  </div>
+  </section>
+
+  <section id="watson" class="watson-section" >
+    <div class="watson">
+      <h1>Watson</h1>
+      <div>This is imageset from visitor parking. Space availability is recognized by IBM Watson using image recognition API.</div>
+      <br>
+      {{> watson}}
+      <br>
+      <a href="http://frames.timespace.co/640889740/fi/frame_service/">Live Webcam</a>
+  </div>
+  </section>
+
+  <section id="apis" class="apis-section">
+  <div class="apis-text">
+    <h1>APIs</h1>
+  <div>IBM Watson Image Recognition API is trained by providing positive and negative images.
+    The classifier can be continously trained by providing additional images to the service as it is used.
+  </div>
+    <a href="https://www.ibm.com/watson/developercloud/visual-recognition.html">Watson Image Recognition</a>
+    <br>
+  <div>
+    <br>
+    <h4>Watson APIs in Bluemix catalog</h4>
+  </div>
+    <a href="https://console.ng.bluemix.net/catalog/?taxonomyNavigation=applications&category=watson">Watson APIs</a>
+  </div>
+</section>
+
+<section id="about" class="about-section">
+  <div class="about-text">
+  <h1>About</h1>
+  Nokia Parking Advisor is a Demo app running in IBM Bluemix platform. Application is writen with Node.js and utilizing Meteor framework in the GUI layer.
+  Application uses Node-Red to implement set of microservices. Watson is used for Visual recognition of the Demo. 
+
+  <h4>Microservices Source</h4>
+  <a href="https://parking-nr.mybluemix.net/">Node-Red Code</a>
+  </div>
+</section>
+</body>
+
+<template name="parking">
+  <ol class="parking">
+    {{#each areas}} {{> area}} {{/each}}
+
+  <li>
+    {{#if selectedArea}}
+    <div class="area">
+      <div class="name">{{selectedArea}}</div>
+      <button class="inc">+1</button>
+      <button class="dec">-1</button>
+    </div>
+    {{else}}
+    <div class="area">Click a area to select</div>
+    {{/if}}
+  </li>
+  
+  </ol>
+</template>
+
+<template name="area">
+  <li class="area {{selected}}">
+    <span class="name">{{name}}</span>
+    <span class="places">{{places}}</span>
+  </li>
+</template>
+
+<template name="watson">
+  {{#with watsonparking}}
+    <button class="inc">{{text}}</button>
+    <h3>{{score}}</h3>
+  <img id="camera_image" class="watson-image" src="{{url}}"/>
+  {{/with}}
+</template>
+
+<template name="map">
+  {{#with spaces}}
+    {{places}}
+  {{/with}}
+</template>
+
+<template name="marker">
+  {{#if free}}
+    {{#if free_low}}
+      <div id={{id}} class="marker_free_low"></div>
+    {{else}}
+      <div id={{id}} class="marker_free"></div>
+    {{/if}}
+  {{else}}
+    <div id={{id}} class="marker_full"></div>
+  {{/if}}
+  <!-- Unnamed () -->
+  <div id="u4" class="text" style="display:none; visibility: hidden">
+    <p><span></span></p>
+  </div>
+</template>
+
