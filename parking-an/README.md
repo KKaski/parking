@@ -12,3 +12,17 @@ of some bluemix analytics capabilities you can use.
 6. Copy the content from the ParkingScript.r to the edit area and press sbmit
 7. Explore the script and the out put
 8. You can allso open RStudi environment where you can get nicer plots. If the environment asks for userids you can get them from the connect section of the dashDB console.
+
+
+##Warehousing
+1. Open Cloudant admin console
+2. Select analytics tables
+3. Create warehouse
+4. Select dashDB
+4. Login / provide Bluemix credentials
+5. Provide warehouse name (parkingwh)
+6. Datasources. Write the cloudan database name plugitchargers 
+7. Select the dashDB service instance
+8. Cick Create Warehouse 
+9. Wait for the Warehousing to start
+10. Open dashDB console from the Warehouses list

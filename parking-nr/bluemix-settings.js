@@ -51,7 +51,8 @@ var settings = module.exports = {
 
     //Kimmo
     //This is required to add jimp functionality to the code
-    functionGlobalContext: { Jimp : require("jimp")},
+    functionGlobalContext: {    Jimp : require("jimp"),
+                                process: process},
 
     storageModule: require("./couchstorage")
 }

@@ -1,6 +1,4 @@
 # Parking Demo User Interface (parking-gui)
----
-
 This is demo application using IBM Bluemix and Meteor framework to create responsive IoT application. It uses Node-Red based microservices to connect to the physical world. 
 
 This project is the user interface layer for the end users. 
@@ -24,6 +22,11 @@ the meteor version for now. When writing this version 1.4.2.3 was realeased whic
 
 
 ###### H6 Note! Use your own application name to avoid overlapping hostnames in public Bluemix environment
+
+##Code changes
+1. parking-gui.js
+Change the Node-Red Microservice endpoint to point your services
+var result = HTTP.call("GET", "https://parking-nr.mybluemix.net/simulate?output=json",{});
 
 ##Deploy
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/KKaski/parking.git/parking-gui#[required])
