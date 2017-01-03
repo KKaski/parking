@@ -9,6 +9,7 @@ related image capturing and training capabilities.
 
 ##Bluemix environment variables
 Define the following environment variables
+
 1. NODE_RED_USERNAME
 2. NODE_RED_PASSWORD
 3. NODE_TLS_REJECT_UNAUTHORIZED (0)
