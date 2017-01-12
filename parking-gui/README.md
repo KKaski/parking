@@ -29,5 +29,5 @@ Change the Node-Red Microservice endpoint to point your services
 var result = HTTP.call("GET", "https://parking-nr.mybluemix.net/simulate?output=json",{});
 
 ##Deploy
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://github.com/KKaski/parking/tree/master/parking-gui#[required])
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/KKaski/parking/tree/master/parking-gui#[required])
 
