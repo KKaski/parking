@@ -6,11 +6,16 @@ idaInit(mycon)
 spaces <- as.data.frame(ida.data.frame('"DASH100925"."PLUGITCHARGERS"')[ ,c('DATE', 'DATEFULL', 'DAY', 'HOURS', 'MONTH', 'P10', 'P3', 'P5', '_ID', '_REV')])
 
 names(spaces)
+head(spaces)
 
-#LEts plot some histograms to see the data
-hist(as.numeric(spaces$P3))
-hist(as.numeric(spaces$P5))
-hist(as.numeric(spaces$P10))
+#Do the graphics instead of pdf files which is default
+#jpeg(type='cairo', file = "graph.jpg",width=650, height=600)
+#sink('/dev/null') 
+
+#Lets plot some histograms to see the data
+hist(as.numeric(spaces$P3),col=rainbow(7))
+hist(as.numeric(spaces$P5),col=rainbow(7))
+hist(as.numeric(spaces$P10),col=rainbow(7))
 
 #Now some experimenting with the days
 plot(spaces$DAY,spaces$P3,main="Free spaces/day P3", xlab="Weekday", ylab="Free Spaces", pch=19)
@@ -27,3 +32,7 @@ plot(spacesday1$HOUR,spacesday1$P10,main="Free spaces Day1 /hour P10", xlab="Hou
 spacesday2 <- spaces[spaces[, "DAY"]==2, ]
 plot(spacesday2$HOUR,spacesday2$P10,main="Free spaces Day2 /hour P10", xlab="Hour of day", ylab="Free Spaces P10", pch=19)
 
+#Housekeeping
+#dev.off() 
+#sink() 
+close(mycon)

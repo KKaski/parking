@@ -1,0 +1,1820 @@
+{
+  "_id": "parking-nr/flow",
+  "_rev": "363-d56c3cb34ccb8cfc49a05e1a8d1ee7d8",
+  "flow": [
+    {
+      "id": "6f1a832.6d2fb7c",
+      "type": "tab",
+      "label": "Control GUI"
+    },
+    {
+      "id": "c471c7f9.599e7",
+      "type": "tab",
+      "label": "Plugit"
+    },
+    {
+      "id": "172e6375.27112d",
+      "type": "tab",
+      "label": "Watson"
+    },
+    {
+      "id": "f44ba8f7.0200e",
+      "type": "tab",
+      "label": "Image collector"
+    },
+    {
+      "id": "89d25149.e3b29",
+      "type": "tab",
+      "label": "Weather"
+    },
+    {
+      "id": "dbc6f43d.9cbe98",
+      "type": "tab",
+      "label": "Flow 1"
+    },
+    {
+      "id": "8bd9da32.8dd0f8",
+      "type": "subflow",
+      "name": "GetSettings",
+      "info": "",
+      "in": [
+        {
+          "x": -33,
+          "y": 203,
+          "wires": [
+            {
+              "id": "56dc074b.8b25f8"
+            }
+          ]
+        }
+      ],
+      "out": [
+        {
+          "x": 379,
+          "y": 202.5,
+          "wires": [
+            {
+              "id": "a5017a50.21a4f8",
+              "port": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e6a19930.f448f8",
+      "type": "os-config",
+      "z": "",
+      "cfgtype": "bluemix",
+      "region": "dallas",
+      "tendantId": "",
+      "userId": "",
+      "userName": "",
+      "password": "",
+      "name": "Images"
+    },
+    {
+      "id": "da4e3a47.b5266",
+      "type": "os-config",
+      "z": "",
+      "cfgtype": "api",
+      "region": "dallas",
+      "tendantId": "cb6113c50134456182610caae5bef86e",
+      "userId": "abcfc6378f1e42f7b4e30a0bd33cf407",
+      "userName": "admin_4ec6f8dcc35e99df140b9a4596582fa0663bfade",
+      "password": "Mr.Ieh}Cjg3I2hyp",
+      "name": "data"
+    },
+    {
+      "id": "81e5e296.52e178",
+      "type": "tls-config",
+      "z": "",
+      "name": "CA added",
+      "cert": "",
+      "key": "",
+      "ca": "",
+      "verifyservercert": false
+    },
+    {
+      "id": "9d324672.740d6",
+      "type": "swagger-doc",
+      "z": "",
+      "summary": "",
+      "description": "",
+      "tags": "",
+      "consumes": "",
+      "produces": "",
+      "parameters": [],
+      "responses": {},
+      "deprecated": false
+    },
+    {
+      "id": "ffaf3117.586e9",
+      "type": "ui_group",
+      "z": "",
+      "name": "Parking",
+      "tab": "e89b0ec9.51cfd",
+      "disp": true,
+      "width": "9"
+    },
+    {
+      "id": "e89b0ec9.51cfd",
+      "type": "ui_tab",
+      "z": "",
+      "name": "Home",
+      "icon": "dashboard"
+    },
+    {
+      "id": "6ffa7665.05a47",
+      "type": "ui_tab",
+      "z": "",
+      "name": "Test",
+      "icon": "dashboard"
+    },
+    {
+      "id": "1dbb68b.366ae97",
+      "type": "ui_group",
+      "z": "",
+      "name": "Test",
+      "tab": "6ffa7665.05a47",
+      "disp": true,
+      "width": "6"
+    },
+    {
+      "id": "689c04bd.05f68c",
+      "type": "mongodb in",
+      "z": "6f1a832.6d2fb7c",
+      "service": "parking-mongodb",
+      "mongodb": "",
+      "name": "Get Data",
+      "collection": "parking",
+      "operation": "find",
+      "x": 458.75,
+      "y": 403.75,
+      "wires": [
+        [
+          "4cc69c9e.830e54"
+        ]
+      ]
+    },
+    {
+      "id": "5b5da371.1aa25c",
+      "type": "inject",
+      "z": "6f1a832.6d2fb7c",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 142.75,
+      "y": 471.75,
+      "wires": [
+        [
+          "4cc69c9e.830e54",
+          "c7896825.530bb"
+        ]
+      ]
+    },
+    {
+      "id": "4cc69c9e.830e54",
+      "type": "debug",
+      "z": "6f1a832.6d2fb7c",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 620.75,
+      "y": 470,
+      "wires": []
+    },
+    {
+      "id": "c7896825.530bb",
+      "type": "function",
+      "z": "6f1a832.6d2fb7c",
+      "name": "",
+      "func": "msg.limit = 100;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 284.75,
+      "y": 403.25,
+      "wires": [
+        [
+          "689c04bd.05f68c"
+        ]
+      ]
+    },
+    {
+      "id": "3def3408.38259c",
+      "type": "mongodb out",
+      "z": "6f1a832.6d2fb7c",
+      "service": "parking-mongodb",
+      "mongodb": "",
+      "name": "Clear data",
+      "collection": "parking",
+      "payonly": false,
+      "upsert": false,
+      "multi": false,
+      "operation": "delete",
+      "x": 405.75,
+      "y": 596.75,
+      "wires": []
+    },
+    {
+      "id": "888cc510.5b399",
+      "type": "inject",
+      "z": "6f1a832.6d2fb7c",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 147.75,
+      "y": 596.75,
+      "wires": [
+        [
+          "3def3408.38259c",
+          "1636e673.3d4702"
+        ]
+      ]
+    },
+    {
+      "id": "1636e673.3d4702",
+      "type": "debug",
+      "z": "6f1a832.6d2fb7c",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 397.75,
+      "y": 552,
+      "wires": []
+    },
+    {
+      "id": "56dc074b.8b25f8",
+      "type": "cloudant in",
+      "z": "8bd9da32.8dd0f8",
+      "name": "",
+      "cloudant": "",
+      "database": "settings",
+      "service": "parking-nr-cloudantNoSQLDB",
+      "search": "_all_",
+      "design": "",
+      "index": "",
+      "x": 107,
+      "y": 203,
+      "wires": [
+        [
+          "a5017a50.21a4f8"
+        ]
+      ]
+    },
+    {
+      "id": "a5017a50.21a4f8",
+      "type": "function",
+      "z": "8bd9da32.8dd0f8",
+      "name": "SetMsg",
+      "func": "\nif(msg.payload !== undefined && msg.payload.length>0)\n{\n    msg.url = msg.payload[0].url;\n    msg.config = msg.payload[0];\n}    \nelse\n{\n    msg.url = \"http://www.portofhelsinki.fi/tailored/prime_product_julkaisu/helsinginsatama/web/ImageProxy.aspx?imagefilename=lansisatama_p_alue.jpg\";\n}\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 259,
+      "y": 202.5,
+      "wires": [
+        [
+          "e1e1be96.a8b47"
+        ]
+      ]
+    },
+    {
+      "id": "e1e1be96.a8b47",
+      "type": "debug",
+      "z": "8bd9da32.8dd0f8",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 389.5,
+      "y": 205.5,
+      "wires": []
+    },
+    {
+      "id": "d4b78a84.5f7d58",
+      "type": "inject",
+      "z": "f44ba8f7.0200e",
+      "name": "Trigger image fetching",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "*/30 7-14 * * *",
+      "once": false,
+      "x": 132,
+      "y": 70,
+      "wires": [
+        [
+          "269126b5.6dc53a"
+        ]
+      ]
+    },
+    {
+      "id": "bdca1094.24de18",
+      "type": "http request",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "method": "GET",
+      "ret": "bin",
+      "url": "",
+      "tls": "",
+      "x": 405,
+      "y": 186.5,
+      "wires": [
+        [
+          "e0dceb3.3e12c18",
+          "385c80d2.bb3f48"
+        ]
+      ]
+    },
+    {
+      "id": "278216ce.a1145a",
+      "type": "debug",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "payload",
+      "x": 844,
+      "y": 57.25,
+      "wires": []
+    },
+    {
+      "id": "e0dceb3.3e12c18",
+      "type": "function",
+      "z": "f44ba8f7.0200e",
+      "name": "Set Filename and crop",
+      "func": "\nmsg.filename=\"WatsonDemo/Parking1/\"+Date()+\"_new_.jpg\";\n\nvar Jimp = global.get('Jimp')\n\nvar x=parseInt(msg.config.x);\nvar y=parseInt(msg.config.y);\nvar w=parseInt(msg.config.width);\nvar h=parseInt(msg.config.height);\n\nvar myimage = new Jimp(msg.payload, function (err, myimage) {\n    myimage.crop(x,y,w,h);\n    myimage.getBuffer(Jimp.MIME_JPEG,function(err,buffer) {\n        msg.headers={\"Content-Type\":\"image/jpeg\"};\n        msg.payload=buffer;\n        node.send(msg);\n    });\n});\n\n\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 624,
+      "y": 193.5,
+      "wires": [
+        [
+          "278216ce.a1145a",
+          "433b0ce9.7a4474",
+          "2f411f8d.e64818",
+          "1a8cc3fb.23440c"
+        ]
+      ]
+    },
+    {
+      "id": "dc4111b9.0af8b",
+      "type": "cloudant out",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "cloudant": "",
+      "database": "images2",
+      "service": "parking-nr-cloudantNoSQLDB",
+      "payonly": true,
+      "operation": "insert",
+      "x": 1104,
+      "y": 194,
+      "wires": []
+    },
+    {
+      "id": "385c80d2.bb3f48",
+      "type": "debug",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 573,
+      "y": 61.25,
+      "wires": []
+    },
+    {
+      "id": "b12cb8b0.19d0a",
+      "type": "http in",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "url": "/current",
+      "method": "get",
+      "swaggerDoc": "",
+      "x": 136,
+      "y": 365,
+      "wires": [
+        [
+          "dd04c81e.cb2298"
+        ]
+      ]
+    },
+    {
+      "id": "6bc952a9.5fcce4",
+      "type": "http request",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "method": "GET",
+      "ret": "bin",
+      "url": "",
+      "tls": "",
+      "x": 544,
+      "y": 370.5,
+      "wires": [
+        [
+          "22e96e20.643582"
+        ]
+      ]
+    },
+    {
+      "id": "22e96e20.643582",
+      "type": "function",
+      "z": "f44ba8f7.0200e",
+      "name": "Set Content-Type",
+      "func": "msg.headers = {\"Content-Type\":\"image/jpeg\"};\nmsg.filename=\"WatsonDemo/Parking1/\"+Date()+\"_new_.jpg\";\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 731,
+      "y": 371.5,
+      "wires": [
+        [
+          "8cc2dd67.ab0658",
+          "7a762cd8.77b8fc"
+        ]
+      ]
+    },
+    {
+      "id": "8cc2dd67.ab0658",
+      "type": "http response",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "x": 924,
+      "y": 380.25,
+      "wires": []
+    },
+    {
+      "id": "7a762cd8.77b8fc",
+      "type": "debug",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 946,
+      "y": 315.25,
+      "wires": []
+    },
+    {
+      "id": "433b0ce9.7a4474",
+      "type": "function",
+      "z": "f44ba8f7.0200e",
+      "name": "set metadata",
+      "func": "msg ={payload:{date:Date(),classification:\"\",file:msg.filename}};\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 895,
+      "y": 192.5,
+      "wires": [
+        [
+          "dc4111b9.0af8b"
+        ]
+      ]
+    },
+    {
+      "id": "aa3350dc.3326e",
+      "type": "http response",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "x": 922.5,
+      "y": 558.75,
+      "wires": []
+    },
+    {
+      "id": "c9d23b9d.29cfe",
+      "type": "http in",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "url": "/cropping",
+      "method": "get",
+      "swaggerDoc": "",
+      "x": 201.5,
+      "y": 518.5,
+      "wires": [
+        [
+          "ca03dd4f.09c128"
+        ]
+      ]
+    },
+    {
+      "id": "8cf7cf8e.38e9",
+      "type": "debug",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "active": false,
+      "console": "false",
+      "complete": "false",
+      "x": 927.5,
+      "y": 479.75,
+      "wires": []
+    },
+    {
+      "id": "8e8f01a3.db227",
+      "type": "template",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "field": "payload",
+      "fieldType": "msg",
+      "format": "handlebars",
+      "syntax": "mustache",
+      "template": "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<script src=\"https://code.jquery.com/jquery-1.12.0.min.js\"></script>\n</head>\n<body>\n<h1>Image cropper</h1>\n<img id=camera src=\"current\" style=\"display: none;\" >\n\n<div>\n    <h4>Example web cams</h4>\n    <p>http://www.portofhelsinki.fi/tailored/prime_product_julkaisu/helsinginsatama/web/ImageProxy.aspx?imagefilename=lansisatama_p_alue.jpg</p>\n    <p>http://frames.timespace.co/640889740/fi/frame_service/</p>\n    <h4>Usage</h4>\n    <p>Use orginal (big) image to defien upper left corner of the cropped area. \n    Update Width and Height fields and press Test to see the result in the cropped area.\n    Use Submit button to save your changes to the image collector.\n    </p>\n</div>\n\n<hr>\n\n<div>\n   <form action=\"save\" id=params>\n  url: <input size=100 type=\"text\" name=\"url\" value=\"{{config.url}}\"><br>\n  width: <input size=100 type=\"text\" name=\"width\" value=\"{{config.width}}\"><br>\n  height: <input size=100 type=\"text\" name=\"height\" value=\"{{config.height}}\"><br>\n  x: <input size=100 type=\"text\" name=\"x\" value=\"{{config.x}}\"><br>\n  y: <input size=100 type=\"text\" name=\"y\" value=\"{{config.y}}\"><br>\n  \n  <input type=\"submit\" value=\"Submit\">\n  <input type=\"button\" value=\"Test\" onclick=\"clip()\">\n</form> \n</div>\n\n<canvas id=\"clipping\" width=\"0\" height=\"0\" style=\"border:1px solid #d3d3d3;\">\nYour browser does not support the HTML5 canvas tag.\n</canvas>\n\n<canvas id=\"myCanvas\" width=\"0\" height=\"0\" style=\"border:1px solid #d3d3d3;\">\nYour browser does not support the HTML5 canvas tag.\n</canvas>\n\n<script>\nwindow.onload = function() {\n    var c = document.getElementById(\"myCanvas\");\n    var ctx = c.getContext(\"2d\");\n    var img = document.getElementById(\"camera\");\n    c.height=img.height;\n    c.width=img.width;\n    ctx.drawImage(img,0,0);\n    \n    clip();\n    \n    // Add event listener for `click` events.\n    c.addEventListener('click', function(event) {\n        \n        console.log(this.offsetLeft+\":\"+this.offsetTop);\n        x = event.pageX - this.offsetLeft,\n        y = event.pageY - this.offsetTop;\n        \n        var form = document.getElementById(\"params\");\n        form.elements[\"x\"].value=x;\n        form.elements[\"y\"].value=y;\n\n        clip();\n    });\n}\n\nfunction clip(ctx)\n{\n    var c = document.getElementById(\"myCanvas\");\n    var ctx = c.getContext(\"2d\");\n        \n    var form = document.getElementById(\"params\");\n    var x = form.elements[\"x\"].value;\n    var y = form.elements[\"y\"].value;\n    var width = form.elements[\"width\"].value;\n    var height = form.elements[\"height\"].value;\n    \n    console.log(x+\":\"+y+\":\"+width+\":\"+height);\n    \n    var clipdata = ctx.getImageData(x,y,width,height);\n    var clip = document.getElementById(\"clipping\");\n    var ctx2 = clip.getContext(\"2d\");\n    clip.height=clipdata.height;\n    clip.width=clipdata.width;\n    ctx2.putImageData(clipdata,0,0); \n}\n\n</script>\n\n\n</body>\n\n</html>",
+      "x": 695.5,
+      "y": 547,
+      "wires": [
+        [
+          "8cf7cf8e.38e9",
+          "aa3350dc.3326e"
+        ]
+      ]
+    },
+    {
+      "id": "b3e7a015.8c3c48",
+      "type": "comment",
+      "z": "f44ba8f7.0200e",
+      "name": "Get the current image from the webcam",
+      "info": "",
+      "x": 263,
+      "y": 303.5,
+      "wires": []
+    },
+    {
+      "id": "d6dce34b.f29e9",
+      "type": "comment",
+      "z": "f44ba8f7.0200e",
+      "name": "Create a view to manipulate image fetching",
+      "info": "",
+      "x": 276,
+      "y": 453.5,
+      "wires": []
+    },
+    {
+      "id": "981ee3d.5ff852",
+      "type": "http in",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "url": "/save",
+      "method": "get",
+      "swaggerDoc": "",
+      "x": 186,
+      "y": 632,
+      "wires": [
+        [
+          "d8f4cb50.dce95",
+          "f09f9bdd.c36958"
+        ]
+      ]
+    },
+    {
+      "id": "d8f4cb50.dce95",
+      "type": "function",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "func": "\nmsg.config=msg.payload;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 375,
+      "y": 635.5,
+      "wires": [
+        [
+          "8e8f01a3.db227",
+          "b86fb1b6.6c96a8"
+        ]
+      ]
+    },
+    {
+      "id": "f09f9bdd.c36958",
+      "type": "debug",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "active": false,
+      "console": "false",
+      "complete": "false",
+      "x": 370,
+      "y": 729.25,
+      "wires": []
+    },
+    {
+      "id": "b0704649.07a468",
+      "type": "cloudant out",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "cloudant": "",
+      "database": "settings",
+      "service": "parking-nr-cloudantNoSQLDB",
+      "payonly": true,
+      "operation": "insert",
+      "x": 944,
+      "y": 653,
+      "wires": []
+    },
+    {
+      "id": "33a6e6c2.a0c012",
+      "type": "debug",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "payload",
+      "x": 704,
+      "y": 479.25,
+      "wires": []
+    },
+    {
+      "id": "b86fb1b6.6c96a8",
+      "type": "cloudant in",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "cloudant": "",
+      "database": "settings",
+      "service": "parking-nr-cloudantNoSQLDB",
+      "search": "_all_",
+      "design": "",
+      "index": "",
+      "x": 562,
+      "y": 655,
+      "wires": [
+        [
+          "635322ac.081a5c",
+          "6399804d.5c39f"
+        ]
+      ]
+    },
+    {
+      "id": "6399804d.5c39f",
+      "type": "function",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "func": "var result = {\"payload\":msg.config}\n\nif(msg.payload !== undefined && msg.payload.length>0)\n{\n    result.payload._id = msg.payload[0]._id;\n    result.payload._rev = msg.payload[0]._rev;\n}\n\nreturn result;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 726,
+      "y": 653.5,
+      "wires": [
+        [
+          "a32fd12c.9f2af8",
+          "b0704649.07a468"
+        ]
+      ]
+    },
+    {
+      "id": "a32fd12c.9f2af8",
+      "type": "debug",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 939,
+      "y": 725.25,
+      "wires": []
+    },
+    {
+      "id": "635322ac.081a5c",
+      "type": "debug",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "active": false,
+      "console": "false",
+      "complete": "payload",
+      "x": 741,
+      "y": 728.25,
+      "wires": []
+    },
+    {
+      "id": "345e1bf4.88e404",
+      "type": "comment",
+      "z": "f44ba8f7.0200e",
+      "name": "Store the image cropping settings",
+      "info": "",
+      "x": 261,
+      "y": 584.5,
+      "wires": []
+    },
+    {
+      "id": "269126b5.6dc53a",
+      "type": "subflow:8bd9da32.8dd0f8",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "x": 218.75,
+      "y": 188.75,
+      "wires": [
+        [
+          "bdca1094.24de18"
+        ]
+      ]
+    },
+    {
+      "id": "ca03dd4f.09c128",
+      "type": "subflow:8bd9da32.8dd0f8",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "x": 426.5,
+      "y": 519,
+      "wires": [
+        [
+          "33a6e6c2.a0c012",
+          "8e8f01a3.db227"
+        ]
+      ]
+    },
+    {
+      "id": "dd04c81e.cb2298",
+      "type": "subflow:8bd9da32.8dd0f8",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "x": 367.5,
+      "y": 370,
+      "wires": [
+        [
+          "6bc952a9.5fcce4"
+        ]
+      ]
+    },
+    {
+      "id": "bc59513e.c11aa8",
+      "type": "http in",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "url": "/now",
+      "method": "get",
+      "swaggerDoc": "",
+      "x": 81.5,
+      "y": 242.25,
+      "wires": [
+        [
+          "269126b5.6dc53a"
+        ]
+      ]
+    },
+    {
+      "id": "2f411f8d.e64818",
+      "type": "http response",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "x": 793,
+      "y": 294.5,
+      "wires": []
+    },
+    {
+      "id": "1a8cc3fb.23440c",
+      "type": "os-put",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "container": "Input",
+      "objectname": "",
+      "objectmode": "0",
+      "imageformat": "jpeg",
+      "audioformat": "wav",
+      "filepath": "",
+      "filename": "",
+      "formattype": "0",
+      "mode": "1",
+      "osconfig": "da4e3a47.b5266",
+      "x": 897.5,
+      "y": 232.5,
+      "wires": [
+        [
+          "44d8956.f90d8ec"
+        ]
+      ]
+    },
+    {
+      "id": "44d8956.f90d8ec",
+      "type": "debug",
+      "z": "f44ba8f7.0200e",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 1110.5,
+      "y": 235.75,
+      "wires": []
+    },
+    {
+      "id": "d89899ee.cfac4",
+      "type": "mongodb out",
+      "z": "6f1a832.6d2fb7c",
+      "service": "parking-mongodb",
+      "mongodb": "",
+      "name": "Update",
+      "collection": "parking",
+      "payonly": true,
+      "upsert": false,
+      "multi": false,
+      "operation": "update",
+      "x": 723.75,
+      "y": 796,
+      "wires": []
+    },
+    {
+      "id": "5041ea74.b99c0c",
+      "type": "mongodb in",
+      "z": "6f1a832.6d2fb7c",
+      "service": "parking-mongodb",
+      "mongodb": "",
+      "name": "GetData",
+      "collection": "parking",
+      "operation": "find",
+      "x": 398.75,
+      "y": 746,
+      "wires": [
+        [
+          "d2d48e83.0bb008"
+        ]
+      ]
+    },
+    {
+      "id": "5eb6983f.518bb",
+      "type": "inject",
+      "z": "6f1a832.6d2fb7c",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 127.75,
+      "y": 739,
+      "wires": [
+        [
+          "81077053.8f9458"
+        ]
+      ]
+    },
+    {
+      "id": "d2d48e83.0bb008",
+      "type": "function",
+      "z": "6f1a832.6d2fb7c",
+      "name": "Add spaces",
+      "func": "msg.payload.forEach(function add(space){\n        if(space.name===\"P3\")\n        {\n            space.places++;\n            node.send({payload:space});\n        }\n});\n\nreturn null;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 564.75,
+      "y": 746.5,
+      "wires": [
+        [
+          "d89899ee.cfac4",
+          "161b06e3.081831"
+        ]
+      ]
+    },
+    {
+      "id": "161b06e3.081831",
+      "type": "debug",
+      "z": "6f1a832.6d2fb7c",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "payload",
+      "x": 737.75,
+      "y": 701.25,
+      "wires": []
+    },
+    {
+      "id": "81077053.8f9458",
+      "type": "function",
+      "z": "6f1a832.6d2fb7c",
+      "name": "",
+      "func": "msg.limit=100;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 260.75,
+      "y": 804.5,
+      "wires": [
+        [
+          "5041ea74.b99c0c"
+        ]
+      ]
+    },
+    {
+      "id": "52fea575.fedcb4",
+      "type": "function",
+      "z": "6f1a832.6d2fb7c",
+      "name": "Populate example data",
+      "func": "var P3 = {name:\"P3\",order:1,places:5};\nvar P5 = {name:\"P5\",order:2,places:2};\nvar P10 = {name:\"P10\",order:3,places:8};\n\nnode.send({payload:P3});\nnode.send({payload:P5});\nnode.send({payload:P10});\n\nreturn null;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 372.75,
+      "y": 929.5,
+      "wires": [
+        [
+          "a2f791ea.b676e",
+          "3eb494b4.bef46c"
+        ]
+      ]
+    },
+    {
+      "id": "4e9932d3.6b77dc",
+      "type": "inject",
+      "z": "6f1a832.6d2fb7c",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 130.75,
+      "y": 928,
+      "wires": [
+        [
+          "52fea575.fedcb4"
+        ]
+      ]
+    },
+    {
+      "id": "a2f791ea.b676e",
+      "type": "mongodb out",
+      "z": "6f1a832.6d2fb7c",
+      "service": "parking-mongodb",
+      "mongodb": "",
+      "name": "Insert",
+      "collection": "parking",
+      "payonly": true,
+      "upsert": false,
+      "multi": false,
+      "operation": "insert",
+      "x": 574.75,
+      "y": 932,
+      "wires": []
+    },
+    {
+      "id": "ac9a191e.2f09",
+      "type": "comment",
+      "z": "6f1a832.6d2fb7c",
+      "name": "Populate example data",
+      "info": "",
+      "x": 145.75,
+      "y": 884.5,
+      "wires": []
+    },
+    {
+      "id": "3cd0bfe5.bb472",
+      "type": "comment",
+      "z": "6f1a832.6d2fb7c",
+      "name": "Add spaces example",
+      "info": "",
+      "x": 143.75,
+      "y": 695.5,
+      "wires": []
+    },
+    {
+      "id": "faef415b.bb773",
+      "type": "comment",
+      "z": "6f1a832.6d2fb7c",
+      "name": "Clear the data",
+      "info": "",
+      "x": 129.75,
+      "y": 546.5,
+      "wires": []
+    },
+    {
+      "id": "cfb513b8.a4a1e",
+      "type": "comment",
+      "z": "6f1a832.6d2fb7c",
+      "name": "Get current status",
+      "info": "",
+      "x": 159.75,
+      "y": 349.5,
+      "wires": []
+    },
+    {
+      "id": "e8c3a38a.173c6",
+      "type": "inject",
+      "z": "c471c7f9.599e7",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "300",
+      "crontab": "",
+      "once": false,
+      "x": 120.5,
+      "y": 137,
+      "wires": [
+        [
+          "bdcf99c4.e95c5"
+        ]
+      ]
+    },
+    {
+      "id": "8f202c36.70dfd",
+      "type": "http request",
+      "z": "c471c7f9.599e7",
+      "name": "",
+      "method": "POST",
+      "ret": "obj",
+      "url": "",
+      "tls": "81e5e296.52e178",
+      "x": 331.5,
+      "y": 78,
+      "wires": [
+        [
+          "a6ebfec9.5914",
+          "6405a1a2.a9eb78"
+        ]
+      ]
+    },
+    {
+      "id": "a6ebfec9.5914",
+      "type": "debug",
+      "z": "c471c7f9.599e7",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 496.5,
+      "y": 30,
+      "wires": []
+    },
+    {
+      "id": "6405a1a2.a9eb78",
+      "type": "function",
+      "z": "c471c7f9.599e7",
+      "name": "",
+      "func": "//msg.payload = msg.payload.api_token;\nmsg.url =\"https://capi.plugitcloud.com/api/companies/97/plugs?api_token=\"+msg.payload.api_token+\"&format=full\";\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 497.7666015625,
+      "y": 84.14999389648438,
+      "wires": [
+        [
+          "f7a5e523.b02558",
+          "a383de7b.e2b878"
+        ]
+      ]
+    },
+    {
+      "id": "f7a5e523.b02558",
+      "type": "debug",
+      "z": "c471c7f9.599e7",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 683.7666015625,
+      "y": 27.08331298828125,
+      "wires": []
+    },
+    {
+      "id": "a383de7b.e2b878",
+      "type": "http request",
+      "z": "c471c7f9.599e7",
+      "name": "",
+      "method": "GET",
+      "ret": "txt",
+      "url": "",
+      "tls": "",
+      "x": 686.5,
+      "y": 84,
+      "wires": [
+        [
+          "4ecfbfff.a85a",
+          "809b3c1b.1b0b28"
+        ]
+      ]
+    },
+    {
+      "id": "48f6e393.0f7cb4",
+      "type": "debug",
+      "z": "c471c7f9.599e7",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 335.5,
+      "y": 419.75,
+      "wires": []
+    },
+    {
+      "id": "e8e46ebd.a939a8",
+      "type": "cloudant out",
+      "z": "c471c7f9.599e7",
+      "name": "Store to cloudant",
+      "cloudant": "",
+      "database": "plugitchargers",
+      "service": "parking-nr-cloudantNoSQLDB",
+      "payonly": true,
+      "operation": "insert",
+      "x": 746.5,
+      "y": 254.5,
+      "wires": []
+    },
+    {
+      "id": "a62445b3.c12af",
+      "type": "comment",
+      "z": "c471c7f9.599e7",
+      "name": "Get the data from the charger stations",
+      "info": "",
+      "x": 187.5,
+      "y": 37,
+      "wires": []
+    },
+    {
+      "id": "5f3809a7.d53d7",
+      "type": "http in",
+      "z": "c471c7f9.599e7",
+      "name": "Charger status",
+      "url": "/update",
+      "method": "get",
+      "swaggerDoc": "9d324672.740d6",
+      "x": 114.5,
+      "y": 87.5,
+      "wires": [
+        [
+          "bdcf99c4.e95c5"
+        ]
+      ]
+    },
+    {
+      "id": "4ecfbfff.a85a",
+      "type": "http response",
+      "z": "c471c7f9.599e7",
+      "name": "",
+      "x": 891.5,
+      "y": 35.75,
+      "wires": []
+    },
+    {
+      "id": "809b3c1b.1b0b28",
+      "type": "json",
+      "z": "c471c7f9.599e7",
+      "name": "",
+      "x": 313.5,
+      "y": 296,
+      "wires": [
+        [
+          "48f6e393.0f7cb4",
+          "37723ac.1833f46"
+        ]
+      ]
+    },
+    {
+      "id": "37723ac.1833f46",
+      "type": "function",
+      "z": "c471c7f9.599e7",
+      "name": "",
+      "func": "var P3=0,P5=0;P10=0;\n\nvar date = new Date();\n\n\n//node.warn(\"Start Processing\");\n\nmsg.payload.forEach(function(charger){\n    //If the charger is available increase availability\n    if(charger.status_id==1)\n    {\n        P10+= charger.name.search(/P10/i)>=0?1:0;\n        P3+= charger.name.search(/P3/i)>=0?1:0;\n        P5+= charger.name.search(/Karaportti [0-9]/i)>=0?1:0;\n    }\n});\n\nvar store = {payload:{datefull:date.toUTCString(),month:date.getUTCMonth(),\n            date:date.getUTCDate(),day:date.getUTCDay(),hours:date.getUTCHours(),\n            P3:P3,P5:P5,P10:P10}};\n\nreturn [store,{payload:P3},{payload:P5},{payload:P10},{status:store}];",
+      "outputs": "5",
+      "noerr": 0,
+      "x": 529.5,
+      "y": 309,
+      "wires": [
+        [
+          "e8e46ebd.a939a8"
+        ],
+        [
+          "4f48ee1b.1cf1c8"
+        ],
+        [
+          "d6cb8784.422d48"
+        ],
+        [
+          "134daa18.7c53ce"
+        ],
+        [
+          "53209244.a8bd44"
+        ]
+      ]
+    },
+    {
+      "id": "4f48ee1b.1cf1c8",
+      "type": "ui_gauge",
+      "z": "c471c7f9.599e7",
+      "name": "P3",
+      "group": "ffaf3117.586e9",
+      "order": 0,
+      "width": "3",
+      "height": "3",
+      "gtype": "donut",
+      "title": "P3",
+      "label": "units",
+      "format": "{{value}}",
+      "min": 0,
+      "max": 10,
+      "colors": [
+        "#00b500",
+        "#e6e600",
+        "#ca3838"
+      ],
+      "x": 703.5,
+      "y": 306.75,
+      "wires": []
+    },
+    {
+      "id": "d6cb8784.422d48",
+      "type": "ui_gauge",
+      "z": "c471c7f9.599e7",
+      "name": "P5",
+      "group": "ffaf3117.586e9",
+      "order": 0,
+      "width": "3",
+      "height": "3",
+      "gtype": "compass",
+      "title": "P5",
+      "label": "units",
+      "format": "{{value}}",
+      "min": 0,
+      "max": 10,
+      "colors": [
+        "#00b500",
+        "#e6e600",
+        "#ca3838"
+      ],
+      "x": 701.5,
+      "y": 351.75,
+      "wires": []
+    },
+    {
+      "id": "134daa18.7c53ce",
+      "type": "ui_gauge",
+      "z": "c471c7f9.599e7",
+      "name": "P10",
+      "group": "ffaf3117.586e9",
+      "order": 0,
+      "width": "3",
+      "height": "3",
+      "gtype": "compass",
+      "title": "P10",
+      "label": "units",
+      "format": "{{value}}",
+      "min": 0,
+      "max": 10,
+      "colors": [
+        "#00b500",
+        "#e6e600",
+        "#ca3838"
+      ],
+      "x": 698.5,
+      "y": 396.75,
+      "wires": []
+    },
+    {
+      "id": "fc2d1c1c.56f2f",
+      "type": "comment",
+      "z": "c471c7f9.599e7",
+      "name": "Process the data",
+      "info": "",
+      "x": 122.5,
+      "y": 291,
+      "wires": []
+    },
+    {
+      "id": "a2ecd02c.d73878",
+      "type": "comment",
+      "z": "c471c7f9.599e7",
+      "name": "Put data with timestamp to Cloudant for analytics",
+      "info": "",
+      "x": 771.5,
+      "y": 207,
+      "wires": []
+    },
+    {
+      "id": "3edccf49.a70d5",
+      "type": "visual-recognition-util-v3",
+      "z": "172e6375.27112d",
+      "name": "Get Classifiers",
+      "apikey": "",
+      "image-feature": "retrieveClassifiersList",
+      "x": 436.5,
+      "y": 71,
+      "wires": [
+        [
+          "e505f89b.7aa018"
+        ]
+      ]
+    },
+    {
+      "id": "cbc28d9d.cd61e8",
+      "type": "inject",
+      "z": "172e6375.27112d",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 142.5,
+      "y": 71.5,
+      "wires": [
+        [
+          "3edccf49.a70d5"
+        ]
+      ]
+    },
+    {
+      "id": "e505f89b.7aa018",
+      "type": "debug",
+      "z": "172e6375.27112d",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "result",
+      "x": 698.5,
+      "y": 72.75,
+      "wires": []
+    },
+    {
+      "id": "260f42b9.5d4a96",
+      "type": "function",
+      "z": "172e6375.27112d",
+      "name": "Random image",
+      "func": "msg.output=\"\";\nif(msg.payload.output!==undefined)\n    msg.output=msg.payload.output;\n\nvar id = Math.floor(Math.random()*100);\nmsg.payload = \"https://parking-nr.mybluemix.net/examples/\"+id+\".jpg\";\n//msg = {payload:\"http://frames.timespace.co/640889740/fi/frame_service/\"};\n\nmsg.params={};\nmsg.params[\"classifier_ids\"]=\"freeparking_109695454\";\nmsg.params[\"threshold\"]=\"0.0\";\nmsg.params[\"owners\"]=\"me,IBM\";\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 300.5,
+      "y": 343,
+      "wires": [
+        [
+          "39301a6b.eb95ae",
+          "c33437e6.6271a"
+        ]
+      ]
+    },
+    {
+      "id": "39301a6b.eb95ae",
+      "type": "debug",
+      "z": "172e6375.27112d",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 479.5,
+      "y": 283.75,
+      "wires": []
+    },
+    {
+      "id": "a41df3b8.cf7b38",
+      "type": "template",
+      "z": "172e6375.27112d",
+      "name": "Result",
+      "field": "payload",
+      "fieldType": "msg",
+      "format": "handlebars",
+      "syntax": "mustache",
+      "template": "<!DOCTYPE html|>\n<html>\n<head>\n</head>\n<body>\n\nScoring of free spaces: {{payload.score}}\n\n<img src=\"{{payload.url}}\">\n\n</body>\n</html>",
+      "x": 386.5,
+      "y": 529,
+      "wires": [
+        [
+          "cd893b75.056e3",
+          "905e21c4.a7c3b"
+        ]
+      ]
+    },
+    {
+      "id": "cd893b75.056e3",
+      "type": "debug",
+      "z": "172e6375.27112d",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "output",
+      "x": 548.5,
+      "y": 537.75,
+      "wires": []
+    },
+    {
+      "id": "c33437e6.6271a",
+      "type": "visual-recognition-v3",
+      "z": "172e6375.27112d",
+      "name": "Free ?",
+      "apikey": "",
+      "image-feature": "classifyImage",
+      "lang": "en",
+      "x": 500.5,
+      "y": 342,
+      "wires": [
+        [
+          "94380998.ee2e68"
+        ]
+      ]
+    },
+    {
+      "id": "94380998.ee2e68",
+      "type": "function",
+      "z": "172e6375.27112d",
+      "name": "",
+      "func": "msg.payload = {score:msg.result.images[0].classifiers[0].classes[0].score,\n        url:msg.result.images[0].source_url};\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 123.5,
+      "y": 483,
+      "wires": [
+        [
+          "e5399896.21ea2"
+        ]
+      ]
+    },
+    {
+      "id": "5104bb8a.31be0c",
+      "type": "http in",
+      "z": "172e6375.27112d",
+      "name": "",
+      "url": "/simulate",
+      "method": "get",
+      "swaggerDoc": "",
+      "x": 113.5,
+      "y": 343.5,
+      "wires": [
+        [
+          "260f42b9.5d4a96"
+        ]
+      ]
+    },
+    {
+      "id": "905e21c4.a7c3b",
+      "type": "http response",
+      "z": "172e6375.27112d",
+      "name": "result",
+      "x": 533.5,
+      "y": 479.75,
+      "wires": []
+    },
+    {
+      "id": "b2c99129.8c3c3",
+      "type": "inject",
+      "z": "172e6375.27112d",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 131.5,
+      "y": 138.5,
+      "wires": [
+        [
+          "e9b50a7c.775a88"
+        ]
+      ]
+    },
+    {
+      "id": "70494f32.8dd8b",
+      "type": "visual-recognition-util-v3",
+      "z": "172e6375.27112d",
+      "name": "Delete Classifier",
+      "apikey": "",
+      "image-feature": "deleteClassifier",
+      "x": 454.5,
+      "y": 139,
+      "wires": [
+        [
+          "f59426a5.268fc8"
+        ]
+      ]
+    },
+    {
+      "id": "f59426a5.268fc8",
+      "type": "debug",
+      "z": "172e6375.27112d",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 681.5,
+      "y": 139.75,
+      "wires": []
+    },
+    {
+      "id": "e9b50a7c.775a88",
+      "type": "function",
+      "z": "172e6375.27112d",
+      "name": "",
+      "func": "msg.params={};\nmsg.params[\"classifier_id\"]=\"freeparking_109695454\";\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 273.5,
+      "y": 140,
+      "wires": [
+        [
+          "70494f32.8dd8b"
+        ]
+      ]
+    },
+    {
+      "id": "8535adb4.a6da9",
+      "type": "comment",
+      "z": "172e6375.27112d",
+      "name": "Watson image classifier",
+      "info": "",
+      "x": 141.75,
+      "y": 272,
+      "wires": []
+    },
+    {
+      "id": "5dcaa3bd.9c1924",
+      "type": "mongodb out",
+      "z": "6f1a832.6d2fb7c",
+      "service": "parking-mongodb",
+      "mongodb": "",
+      "name": "Update",
+      "collection": "parking",
+      "payonly": true,
+      "upsert": false,
+      "multi": false,
+      "operation": "insert",
+      "x": 563,
+      "y": 114.99998474121094,
+      "wires": []
+    },
+    {
+      "id": "bd6b64bd.0ed5b8",
+      "type": "function",
+      "z": "6f1a832.6d2fb7c",
+      "name": "Set spaces",
+      "func": "var P3 = {name:\"P3\",order:1,places:msg.status.payload.P3};\nvar P5 = {name:\"P5\",order:2,places:msg.status.payload.P5};\nvar P10 = {name:\"P10\",order:3,places:msg.status.payload.P10};\n\nnode.send({payload:P3});\nnode.send({payload:P5});\nnode.send({payload:P10});\n\nreturn null;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 375,
+      "y": 112.49998474121094,
+      "wires": [
+        [
+          "5dcaa3bd.9c1924",
+          "2455d168.07efa6"
+        ]
+      ]
+    },
+    {
+      "id": "2455d168.07efa6",
+      "type": "debug",
+      "z": "6f1a832.6d2fb7c",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "payload",
+      "x": 577.75,
+      "y": 160.49998474121094,
+      "wires": []
+    },
+    {
+      "id": "7147305e.15c49",
+      "type": "comment",
+      "z": "6f1a832.6d2fb7c",
+      "name": "Update GUI",
+      "info": "",
+      "x": 156,
+      "y": 60.5,
+      "wires": []
+    },
+    {
+      "id": "f430bc8e.5e2ca",
+      "type": "link in",
+      "z": "6f1a832.6d2fb7c",
+      "name": "updategui",
+      "links": [
+        "53209244.a8bd44"
+      ],
+      "x": 96.75003051757812,
+      "y": 115.74998474121094,
+      "wires": [
+        [
+          "78f1c045.7adff",
+          "bd6b64bd.0ed5b8"
+        ]
+      ]
+    },
+    {
+      "id": "53209244.a8bd44",
+      "type": "link out",
+      "z": "c471c7f9.599e7",
+      "name": "",
+      "links": [
+        "f430bc8e.5e2ca"
+      ],
+      "x": 624,
+      "y": 450.5,
+      "wires": []
+    },
+    {
+      "id": "3eb494b4.bef46c",
+      "type": "debug",
+      "z": "6f1a832.6d2fb7c",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 594.75,
+      "y": 978.25,
+      "wires": []
+    },
+    {
+      "id": "78f1c045.7adff",
+      "type": "mongodb out",
+      "z": "6f1a832.6d2fb7c",
+      "service": "parking-mongodb",
+      "mongodb": "",
+      "name": "remove",
+      "collection": "parking",
+      "payonly": false,
+      "upsert": false,
+      "multi": false,
+      "operation": "delete",
+      "x": 213.25,
+      "y": 175.24998474121094,
+      "wires": []
+    },
+    {
+      "id": "3a2732f8.0bc956",
+      "type": "comment",
+      "z": "c471c7f9.599e7",
+      "name": "Update GUI",
+      "info": "",
+      "x": 724,
+      "y": 452,
+      "wires": []
+    },
+    {
+      "id": "f0eae533.7118c",
+      "type": "inject",
+      "z": "89d25149.e3b29",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 139.5,
+      "y": 119.5,
+      "wires": [
+        [
+          "8b58dbaf.aa445"
+        ]
+      ]
+    },
+    {
+      "id": "3fae76d7.2c470a",
+      "type": "debug",
+      "z": "89d25149.e3b29",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 450.5,
+      "y": 129.75,
+      "wires": []
+    },
+    {
+      "id": "4243c920.00d8e",
+      "type": "http in",
+      "z": "172e6375.27112d",
+      "name": "",
+      "url": "/koe",
+      "method": "get",
+      "swaggerDoc": "",
+      "x": 152.5,
+      "y": 636.5,
+      "wires": [
+        [
+          "ceb2c934.3924d8",
+          "1c0f3378.5cd325"
+        ]
+      ]
+    },
+    {
+      "id": "ceb2c934.3924d8",
+      "type": "debug",
+      "z": "172e6375.27112d",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 403.5,
+      "y": 639.75,
+      "wires": []
+    },
+    {
+      "id": "1c0f3378.5cd325",
+      "type": "http response",
+      "z": "172e6375.27112d",
+      "name": "",
+      "x": 393.5,
+      "y": 696.75,
+      "wires": []
+    },
+    {
+      "id": "e5399896.21ea2",
+      "type": "switch",
+      "z": "172e6375.27112d",
+      "name": "",
+      "property": "output",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "json",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 2,
+      "x": 256.5,
+      "y": 485,
+      "wires": [
+        [
+          "905e21c4.a7c3b"
+        ],
+        [
+          "a41df3b8.cf7b38"
+        ]
+      ]
+    },
+    {
+      "id": "8b58dbaf.aa445",
+      "type": "weather_insights",
+      "z": "89d25149.e3b29",
+      "name": "Karaportti",
+      "service": "/observations.json",
+      "geocode": "60.224149,24.756478",
+      "units": "m",
+      "language": "",
+      "x": 310.5,
+      "y": 241,
+      "wires": [
+        [
+          "3fae76d7.2c470a"
+        ]
+      ]
+    },
+    {
+      "id": "45746bec.fa846c",
+      "type": "inject",
+      "z": "dbc6f43d.9cbe98",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 143.5,
+      "y": 216.5,
+      "wires": [
+        [
+          "1a7c1675.977482"
+        ]
+      ]
+    },
+    {
+      "id": "282eedae.fa5dba",
+      "type": "debug",
+      "z": "dbc6f43d.9cbe98",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 499.5,
+      "y": 218.75,
+      "wires": []
+    },
+    {
+      "id": "1a7c1675.977482",
+      "type": "function",
+      "z": "dbc6f43d.9cbe98",
+      "name": "",
+      "func": "var process = global.get('process');\n\nmsg = {payload:process.env.NODE_RED_USERNAME};\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 314.5,
+      "y": 220,
+      "wires": [
+        [
+          "282eedae.fa5dba"
+        ]
+      ]
+    },
+    {
+      "id": "bdcf99c4.e95c5",
+      "type": "function",
+      "z": "c471c7f9.599e7",
+      "name": "",
+      "func": "var process = global.get('process');\nvar username = process.env.PLUGIT_USERNAME;\nvar password = process.env.PLUGIT_PASSWORD;\n\nmsg.url = \"https://capi.plugitcloud.com/auth/login?username=\"+username+\"&password=\"+password;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 285.5,
+      "y": 135,
+      "wires": [
+        [
+          "8f202c36.70dfd"
+        ]
+      ]
+    }
+  ]
+}

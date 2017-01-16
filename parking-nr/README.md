@@ -5,16 +5,16 @@ It contains services to retrieve data from the integrated parking systems as wel
 related image capturing and training capabilities.
 
 ##Deploy
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/KKaski/parking.git/parking-nr#[required])
+cf push
 
 ##Bluemix environment variables
 Define the following environment variables
 
-1. NODE_RED_USERNAME
-2. NODE_RED_PASSWORD
-3. NODE_TLS_REJECT_UNAUTHORIZED (0)
-4. PLUGIT_USERNAME
-5. PLUGIT_PASSWORD
+1. NODE_RED_USERNAME <Your Value>
+2. NODE_RED_PASSWORD <Your value>
+3. NODE_TLS_REJECT_UNAUTHORIZED <0>
+4. PLUGIT_USERNAME <ask from isntructor>
+5. PLUGIT_PASSWORD <ask from instructor>
 
 
 ##Service bindings
