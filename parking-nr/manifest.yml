@@ -4,12 +4,12 @@ applications:
   instances: 1
   domain: mybluemix.net
   name: parking-nr
-   env:
-      NODE_RED_USERNAME:xx
-      NODE_RED_PASSWORD:xx
-      NODE_TLS_REJECT_UNAUTHORIZED:0
-      PLUGIT_USERNAME:xx
-      PLUGIT_PASSWORD:xx
+  env:
+    NODE_RED_USERNAME: xx
+    NODE_RED_PASSWORD: xx
+    NODE_TLS_REJECT_UNAUTHORIZED: 0
+    PLUGIT_USERNAME: xx
+    PLUGIT_PASSWORD: xx
   host: parking-nr
   disk_quota: 1024M
   services:
