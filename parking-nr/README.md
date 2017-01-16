@@ -5,6 +5,7 @@ It contains services to retrieve data from the integrated parking systems as wel
 related image capturing and training capabilities.
 
 ##Deploy
+cf cs cloudantNoSQLDB Lite parking-nr-cloudantNoSQLDB
 cf push
 
 ##Bluemix environment variables

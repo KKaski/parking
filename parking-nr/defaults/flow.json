@@ -1,7 +1,4 @@
-{
-  "_id": "parking-nr/flow",
-  "_rev": "363-d56c3cb34ccb8cfc49a05e1a8d1ee7d8",
-  "flow": [
+[
     {
       "id": "6f1a832.6d2fb7c",
       "type": "tab",
@@ -1817,4 +1814,3 @@
       ]
     }
   ]
-}
