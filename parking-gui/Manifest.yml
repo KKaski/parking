@@ -3,12 +3,6 @@ applications:
   instances: 1
   domain: mybluemix.net
   name: parking-gui
-    env:
-      NODE_RED_USERNAME:xx
-      NODE_RED_PASSWORD:xx
-      NODE_TLS_REJECT_UNAUTHORIZED:0
-      PLUGIT_USERNAME:xx
-      PLUGIT_PASSWORD:xx
   host: parking-gui
   buildpack: https://github.com/KKaski/cf-meteor-buildpack.git
   services:
